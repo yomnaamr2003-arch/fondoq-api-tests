@@ -1,0 +1,16 @@
+case_id,firstname,lastname,totalprice,depositpaid,checkin,checkout,additionalneeds,expected_status
+TC01,Mariam,Fathy,1450,true,2026-11-02,2026-11-05,Breakfast,200
+TC02,Omar,Khaled,980,false,2026-11-10,2026-11-11,,200
+TC03,Laila,Saad,3200,true,2026-12-20,2026-12-27,Sea view,200
+TC04,Hossam,Gamal,610,true,2026-10-30,2026-10-31,Late checkout,200
+TC05,Nada,Farouk,2275,false,2027-01-05,2027-01-09,Airport pickup,200
+TC06,Yassin,Mostafa,1200,true,2026-11-15,2026-11-18,Extra bed,200
+TC07,Rana,Ibrahim,5400,true,2026-12-30,2027-01-03,Gala dinner,200
+TC08,,Mahmoud,900,true,2026-11-20,2026-11-22,,400
+TC09,Tarek,,900,true,2026-11-20,2026-11-22,,400
+TC10,Sherif,Adel,0,true,2026-11-20,2026-11-22,,400
+TC11,Heba,Nour,-150,false,2026-11-20,2026-11-22,,400
+TC12,Aya,Samy,1100,true,2026-11-25,2026-11-23,,400
+TC13,Karim,Wael,1100,true,2026-11-25,2026-11-25,,400
+TC14,Farida,Zaki,1300,true,2026-13-01,2026-13-04,,400
+TC15,Adham,Rizk,750,maybe,2026-11-27,2026-11-29,,400

@@ -1,0 +1,216 @@
+newman
+
+Fondoq Booking API - regression suite
+
+Iteration 1/15
+
+❏ 07 Data-driven create (CSV)
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/auth [200 OK, 262B, 21ms]
+  POST http://localhost:3001/booking [200 OK, 435B, 4ms]
+  ✓  TC01: status is 200 (expected_status column)
+  ✓  TC01: response time is under 2000 ms
+  ✓  TC01: Content-Type header is application/json
+  ✓  TC01: body has integer bookingid and a schema-valid booking
+  ✓  TC01: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/16 [201 Created, 239B, 3ms]
+
+Iteration 2/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 404B, 2ms]
+  ✓  TC02: status is 200 (expected_status column)
+  ✓  TC02: response time is under 2000 ms
+  ✓  TC02: Content-Type header is application/json
+  ✓  TC02: body has integer bookingid and a schema-valid booking
+  ✓  TC02: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/17 [201 Created, 239B, 3ms]
+
+Iteration 3/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 432B, 3ms]
+  ✓  TC03: status is 200 (expected_status column)
+  ✓  TC03: response time is under 2000 ms
+  ✓  TC03: Content-Type header is application/json
+  ✓  TC03: body has integer bookingid and a schema-valid booking
+  ✓  TC03: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/18 [201 Created, 239B, 3ms]
+
+Iteration 4/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 438B, 3ms]
+  ✓  TC04: status is 200 (expected_status column)
+  ✓  TC04: response time is under 2000 ms
+  ✓  TC04: Content-Type header is application/json
+  ✓  TC04: body has integer bookingid and a schema-valid booking
+  ✓  TC04: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/19 [201 Created, 239B, 19ms]
+
+Iteration 5/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 440B, 4ms]
+  ✓  TC05: status is 200 (expected_status column)
+  ✓  TC05: response time is under 2000 ms
+  ✓  TC05: Content-Type header is application/json
+  ✓  TC05: body has integer bookingid and a schema-valid booking
+  ✓  TC05: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/20 [201 Created, 239B, 3ms]
+
+Iteration 6/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 437B, 2ms]
+  ✓  TC06: status is 200 (expected_status column)
+  ✓  TC06: response time is under 2000 ms
+  ✓  TC06: Content-Type header is application/json
+  ✓  TC06: body has integer bookingid and a schema-valid booking
+  ✓  TC06: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/21 [201 Created, 239B, 3ms]
+
+Iteration 7/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 437B, 3ms]
+  ✓  TC07: status is 200 (expected_status column)
+  ✓  TC07: response time is under 2000 ms
+  ✓  TC07: Content-Type header is application/json
+  ✓  TC07: body has integer bookingid and a schema-valid booking
+  ✓  TC07: booking echoes the row that was sent
+  DELETE http://localhost:3001/booking/22 [201 Created, 239B, 1ms]
+
+Iteration 8/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 400B, 3ms]
+  1. TC08: status is 400 (expected_status column)
+  ✓  TC08: response time is under 2000 ms
+  ✓  TC08: Content-Type header is present
+  DELETE http://localhost:3001/booking/23 [201 Created, 239B, 2ms]
+
+Iteration 9/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 398B, 2ms]
+  2. TC09: status is 400 (expected_status column)
+  ✓  TC09: response time is under 2000 ms
+  ✓  TC09: Content-Type header is present
+  DELETE http://localhost:3001/booking/24 [201 Created, 239B, 1ms]
+
+Iteration 10/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 401B, 2ms]
+  3. TC10: status is 400 (expected_status column)
+  ✓  TC10: response time is under 2000 ms
+  ✓  TC10: Content-Type header is present
+  DELETE http://localhost:3001/booking/25 [201 Created, 239B, 1ms]
+
+Iteration 11/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 403B, 2ms]
+  4. TC11: status is 400 (expected_status column)
+  ✓  TC11: response time is under 2000 ms
+  ✓  TC11: Content-Type header is present
+  DELETE http://localhost:3001/booking/26 [201 Created, 239B, 2ms]
+
+Iteration 12/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 401B, 2ms]
+  5. TC12: status is 400 (expected_status column)
+  ✓  TC12: response time is under 2000 ms
+  ✓  TC12: Content-Type header is present
+  DELETE http://localhost:3001/booking/27 [201 Created, 239B, 4ms]
+
+Iteration 13/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 403B, 2ms]
+  6. TC13: status is 400 (expected_status column)
+  ✓  TC13: response time is under 2000 ms
+  ✓  TC13: Content-Type header is present
+  DELETE http://localhost:3001/booking/28 [201 Created, 239B, 2ms]
+
+Iteration 14/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 404B, 2ms]
+  7. TC14: status is 400 (expected_status column)
+  ✓  TC14: response time is under 2000 ms
+  ✓  TC14: Content-Type header is present
+  DELETE http://localhost:3001/booking/29 [201 Created, 239B, 2ms]
+
+Iteration 15/15
+
+↳ POST /booking - data-driven (booking_test_data.csv)
+  POST http://localhost:3001/booking [200 OK, 402B, 2ms]
+  8. TC15: status is 400 (expected_status column)
+  ✓  TC15: response time is under 2000 ms
+  ✓  TC15: Content-Type header is present
+  DELETE http://localhost:3001/booking/30 [201 Created, 239B, 1ms]
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │              15 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              31 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              15 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              30 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              59 │               8 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 623ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 2.83kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 3ms [min: 1ms, max: 21ms, s.d.: 4ms] │
+└─────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                                     
+                                                                                                                
+ 1.  AssertionError  TC08: status is 400 (expected_status column)                                               
+     iteration: 8    expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 2.  AssertionError  TC09: status is 400 (expected_status column)                                               
+     iteration: 9    expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 3.  AssertionError  TC10: status is 400 (expected_status column)                                               
+     iteration: 10   expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 4.  AssertionError  TC11: status is 400 (expected_status column)                                               
+     iteration: 11   expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 5.  AssertionError  TC12: status is 400 (expected_status column)                                               
+     iteration: 12   expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 6.  AssertionError  TC13: status is 400 (expected_status column)                                               
+     iteration: 13   expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 7.  AssertionError  TC14: status is 400 (expected_status column)                                               
+     iteration: 14   expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
+                                                                                                                
+ 8.  AssertionError  TC15: status is 400 (expected_status column)                                               
+     iteration: 15   expected 200 to deeply equal 400                                                           
+                     at assertion:0 in test-script                                                              
+                     inside "07 Data-driven create (CSV) / POST /booking - data-driven (booking_test_data.csv)" 
