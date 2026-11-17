@@ -35,7 +35,7 @@ The API does **not** match the contract: **8 defects**, listed in `docs/bugs/`. 
 |---|---|
 | Postman folders 01-06 (Newman, local upstream server) | 108 assertions, 102 pass, 6 fail (BUG-001, 002, 007, 008 x3) |
 | Postman folder 07 with the CSV (15 iterations) | 59 assertions, 51 pass, 8 fail (TC08-TC15 accepted instead of rejected: BUG-003..007) |
-| REST Assured (46 tests) | **not executed yet** - see "Verification status". Expected: 27 pass, 19 fail on exactly the `known-defect` tests |
+| REST Assured, **public server**, 2026-11-17 (46 tests) | `mvn test`: 27 pass, 19 fail. With `-DexcludedGroups=known-defect`: 27 run, 0 fail, BUILD SUCCESS. So the 19 failures are exactly the tests tagged `known-defect` |
 
 Every red test is a real contract violation; nothing fails because of ordering or data.
 
@@ -112,8 +112,10 @@ Each test creates its own booking (unique names), and `BaseApiTest` deletes ever
 | BUG-007 | wrong types silently coerced (`"maybe"` -> true, `"abc"` -> null, 12.5 -> 12) |
 | BUG-008 | missing required field -> 500 instead of 400 |
 
-## Verification status (read before sending the bug reports)
+## Verification status
 
-- **Verified:** the Postman collection was executed with Newman against the real upstream Restful-Booker source (`github.com/mwinteringham/restful-booker`, commit 619d031) running on `localhost:3001`. The exported results and logs are in `postman/` and `evidence/`. The server held the same 10 seeded bookings before and after both runs, so the suite cleans up after itself.
-- **Not verified:** (1) the public server `https://restful-booker.herokuapp.com` could not be reached from the environment where the suite was built, so the defects must be re-confirmed there by running the `public` environment once; (2) the REST Assured project could not be compiled or run there either (Maven Central was blocked): it was written against the REST Assured 5.5 / JUnit 5.11 APIs and only syntax-checked. Run `mvn test` once and fix any compile error before relying on it. The expected result is described above.
-- Screenshots in `evidence/` are of the Newman console output. Add screenshots of the Postman Runner and of `mvn test` from your own machine for the submission.
+- **Postman:** executed with Newman against the real upstream Restful-Booker source (`github.com/mwinteringham/restful-booker`, commit 619d031) on `localhost:3001`. Results and logs are in `postman/` and `evidence/`. The server held the same 10 seeded bookings before and after both runs, so the suite cleans up after itself.
+- **REST Assured on the public server** (`https://restful-booker.herokuapp.com`), run on 2026-11-17 with Java 21 / Maven 3.9.9: `mvn test` -> 46 tests, 19 failures; `mvn test -DexcludedGroups=known-defect` -> 27 tests, 0 failures, BUILD SUCCESS. All 8 reported defects are therefore confirmed on the public server. Output files are in `evidence/`.
+- **Lesson recorded:** the first public run failed 41/46 because REST Assured's `setAccept(ContentType.JSON)` sends a list of JSON media types (the API answers 418) and `setContentType(ContentType.JSON)` appends `charset=ISO-8859-1` (the API answers 415). `ApiSpecs` now sends plain `application/json` strings.
+- **Not covered by the public run:** the PUT variant of BUG-004 (price 0 on update) was only checked manually on the local copy.
+- Screenshots in `evidence/` of the Newman runs are console output; the Maven screenshots are from `mvn test` on the public server.

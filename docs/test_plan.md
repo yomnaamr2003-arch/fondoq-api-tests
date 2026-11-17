@@ -38,7 +38,7 @@ Variables: `baseUrl`, `username`, `password` (secret) and `token` live in the Po
 
 ## Test cases
 
-Status column = result of the run on 2026-11-15 against the local upstream server (Postman run executed; REST Assured expected result, see Risks). PM = Postman folder, RA = REST Assured class.
+Status column = result of the runs: Postman via Newman against the local upstream server (2026-11-15) and REST Assured against the public server (2026-11-17: 46 tests, 19 failures = exactly the tests tagged `known-defect`; 27 tests green without them). PM = Postman folder, RA = REST Assured class.
 
 | ID | Endpoint | Scenario | Expected | Automated in |
 |---|---|---|---|---|
@@ -87,8 +87,9 @@ Status column = result of the run on 2026-11-15 against the local upstream serve
 ## Risks
 
 - **Shared public server:** other people's data and resets can change the list size or availability. Mitigation: unique names, own data, filters by unique lastname, nothing depends on pre-existing bookings, clean-up after every test.
-- **Public server was not reachable from the environment where this suite was built** (network allow-list), and Maven Central was not either. The Postman suite was therefore executed with Newman against the real upstream Restful-Booker code (commit 619d031) running locally; the REST Assured project was written and syntax-checked but **not executed**. Both must be run once on the public server before the bug reports go to the partner.
-- **Server behaviour may differ per version:** the public instance could run a different build than the local one; defects must be re-confirmed there.
+- **Run location:** the Postman suite was executed with Newman against the upstream Restful-Booker code (commit 619d031) running locally; the REST Assured suite was executed on the public server on 2026-11-17 and confirmed all 8 defects. The Postman collection has not yet been exported from a run on the public environment - repeat it there when possible.
+- **Server behaviour may differ per version:** the public instance matched the local build for every defect; re-run after each partner release.
+- **Client header pitfalls:** the API answers 418 to an Accept header that is not exactly `application/json` and 415 to a JSON Content-Type with `charset=ISO-8859-1`; REST Assured sends both by default for `ContentType.JSON`, so the specs use plain strings.
 - **Token lifetime:** the token is cached; Postman refreshes it after 10 minutes. If the partner shortens token lifetime, adjust `TTL_MS`.
 - **Failures hide data leaks:** when the API wrongly accepts invalid input it creates a booking; the tests delete such bookings (best effort). A crash mid-run could leave one behind - searchable by the `Qa`/`FQ` + `Tester` name prefixes.
 - **Contract gaps** (not defects, to clarify with the partner):

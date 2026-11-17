@@ -1,7 +1,7 @@
 package com.fondoq.api.support;
 
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
+
 import io.restassured.specification.RequestSpecification;
 
 import java.util.Base64;
@@ -16,8 +16,8 @@ public final class ApiSpecs {
     public static RequestSpecification json() {
         return new RequestSpecBuilder()
                 .setBaseUri(TestConfig.baseUrl())
-                .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
+               .setContentType("application/json; charset=UTF-8")
+.setAccept("application/json")
                 .build();
     }
 
