@@ -38,7 +38,7 @@ Variables: `baseUrl`, `username`, `password` (secret) and `token` live in the Po
 
 ## Test cases
 
-Status column = result of the runs: Postman via Newman against the local upstream server (2026-11-15) and REST Assured against the public server (2026-11-17: 46 tests, 19 failures = exactly the tests tagged `known-defect`; 27 tests green without them). PM = Postman folder, RA = REST Assured class.
+Status column = result of the runs: Postman/Newman against the public server (folders 01-06: 108 assertions, 6 failed; CSV folder 07: 59 assertions, 8 failed; identical to a local run on 2026-11-15) and REST Assured against the public server (2026-11-17: 46 tests, 19 failures = exactly the tests tagged `known-defect`; 27 tests green without them). PM = Postman folder, RA = REST Assured class.
 
 | ID | Endpoint | Scenario | Expected | Automated in |
 |---|---|---|---|---|
@@ -87,7 +87,7 @@ Status column = result of the runs: Postman via Newman against the local upstrea
 ## Risks
 
 - **Shared public server:** other people's data and resets can change the list size or availability. Mitigation: unique names, own data, filters by unique lastname, nothing depends on pre-existing bookings, clean-up after every test.
-- **Run location:** the Postman suite was executed with Newman against the upstream Restful-Booker code (commit 619d031) running locally; the REST Assured suite was executed on the public server on 2026-11-17 and confirmed all 8 defects. The Postman collection has not yet been exported from a run on the public environment - repeat it there when possible.
+- **Run location:** both suites were executed on the public server (REST Assured 2026-11-17, Postman app and Newman 2026-11-18/20) and every result matched a run on a local copy of the upstream source (commit 619d031). The Postman app's free plan does not allow data files or result export in the Runner, so the CSV run and the exported JSON come from Newman.
 - **Server behaviour may differ per version:** the public instance matched the local build for every defect; re-run after each partner release.
 - **Client header pitfalls:** the API answers 418 to an Accept header that is not exactly `application/json` and 415 to a JSON Content-Type with `charset=ISO-8859-1`; REST Assured sends both by default for `ContentType.JSON`, so the specs use plain strings.
 - **Token lifetime:** the token is cached; Postman refreshes it after 10 minutes. If the partner shortens token lifetime, adjust `TTL_MS`.

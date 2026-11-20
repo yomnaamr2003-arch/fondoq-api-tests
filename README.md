@@ -27,14 +27,14 @@ fondoq-api-tests/
 └── README.md
 ```
 
-## Current result (2026-11-15)
+## Current result (2026-11-20)
 
 The API does **not** match the contract: **8 defects**, listed in `docs/bugs/`. Highlights: `DELETE` answers **201 instead of 204** (BUG-001, the same kind of change that broke cancellations), none of the validation rules are enforced (BUG-003..007, one of them stores dates as `0NaN-aN-aN`), and a missing required field gives **500** (BUG-008).
 
 | Run | Result |
 |---|---|
-| Postman folders 01-06 (Newman, local upstream server) | 108 assertions, 102 pass, 6 fail (BUG-001, 002, 007, 008 x3) |
-| Postman folder 07 with the CSV (15 iterations) | 59 assertions, 51 pass, 8 fail (TC08-TC15 accepted instead of rejected: BUG-003..007) |
+| Postman folders 01-06, **public server** (Postman app 2026-11-18, Newman 2026-11-20; also Newman on a local copy 2026-11-15) | 108 assertions, 102 pass, 6 fail (BUG-001, 002, 007, 008 x3), identical in all three runs |
+| Postman folder 07 with the CSV (15 iterations), **public server**, Newman 2026-11-20 | 59 assertions, 51 pass, 8 fail (TC08-TC15 accepted instead of rejected: BUG-003..007), identical to the local run |
 | REST Assured, **public server**, 2026-11-17 (46 tests) | `mvn test`: 27 pass, 19 fail. With `-DexcludedGroups=known-defect`: 27 run, 0 fail, BUILD SUCCESS. So the 19 failures are exactly the tests tagged `known-defect` |
 
 Every red test is a real contract violation; nothing fails because of ordering or data.
@@ -114,7 +114,7 @@ Each test creates its own booking (unique names), and `BaseApiTest` deletes ever
 
 ## Verification status
 
-- **Postman:** executed with Newman against the real upstream Restful-Booker source (`github.com/mwinteringham/restful-booker`, commit 619d031) on `localhost:3001`. Results and logs are in `postman/` and `evidence/`. The server held the same 10 seeded bookings before and after both runs, so the suite cleans up after itself.
+- **Postman on the public server:** folders 01-06 were run in the Postman app (108 assertions, 6 failed) and with Newman; the CSV folder 07 was run with Newman (15 iterations, 59 assertions, 8 failed). Newman was used for the CSV run and for the exported JSON because the Postman app's free plan does not allow data files or result export in the Runner; Newman is the command-line runner of the same collection. The same runs on a local copy of the upstream source (commit 619d031) gave identical numbers, and the server held its seeded bookings before and after, so the suite cleans up after itself.
 - **REST Assured on the public server** (`https://restful-booker.herokuapp.com`), run on 2026-11-17 with Java 21 / Maven 3.9.9: `mvn test` -> 46 tests, 19 failures; `mvn test -DexcludedGroups=known-defect` -> 27 tests, 0 failures, BUILD SUCCESS. All 8 reported defects are therefore confirmed on the public server. Output files are in `evidence/`.
 - **Lesson recorded:** the first public run failed 41/46 because REST Assured's `setAccept(ContentType.JSON)` sends a list of JSON media types (the API answers 418) and `setContentType(ContentType.JSON)` appends `charset=ISO-8859-1` (the API answers 415). `ApiSpecs` now sends plain `application/json` strings.
 - **Not covered by the public run:** the PUT variant of BUG-004 (price 0 on update) was only checked manually on the local copy.
